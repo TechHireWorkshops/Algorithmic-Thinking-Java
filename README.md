@@ -87,55 +87,37 @@ Look to see if you can trim fat or combine steps. Consider how your code would r
 <summary>Version 1</summary>
 
 ```
-	let maxCoins = function(piles) { 
-	    let count=0
-	    while(piles.length>0){
-	        let max = Math.max.apply(null, piles)
-	        piles.splice(piles.indexOf(max),1)
-	        let second=Math.max.apply(null, piles)
-	        piles.splice(piles.indexOf(second),1)
-	        count+=second
-	        piles.splice(piles.indexOf(Math.min.apply(null, piles)),1)
-	    }
-	    return count
+   int maxCoins(int[] piles) {
+		int count=0;
+		Arrays.sort(piles);
+		while(piles.length>1){
+     		count+=piles[piles.length-2];
+	  		int[] newArr = new int[piles.length-3];
+	  		for(int i = 1;i<piles.length-2;i++){
+	  			newArr[i-1]=piles[i];
+	  		}
+	  		piles=newArr;
+    	}
+		return count;
 	};
 ```
-	
-Time Limit Exceeded on LeetCode
+
+Completes in > 2500ms
 </details>
+
 	
 <details>
 <summary>Version 2</summary>
 
 ```
-	let maxCoins = function(piles) { 
-		let count=0
-    	piles=piles.sort((a,b)=>a-b)
-		while(piles.length>1){
-     		count+=piles[piles.length-2]
-	  		piles.splice(piles.length-2,2)
-	   		piles.splice(0,1)
-    	}
-		return count
-	};
-```
-
-Completes in 2136 ms
-</details>
-
-	
-<details>
-<summary>Version 3</summary>
-
-```
-	let maxCoins = function(piles) { 
-	    let count=0
-        piles=piles.sort((a,b)=>a-b)
-	    for(let i = piles.length-2;i>=piles.length/3;i-=2){
-            count+=piles[i]
-        }
-	    return count
-	};
+	int maxCoins(int[] piles) {
+		Arrays.sort(piles);
+		int ans = 0;
+		for (int i = piles.length / 3; i < piles.length; i += 2){
+       	ans += piles[i];
+       	}
+		return ans;
+    }
 ```
 
 Completes in 212 ms
