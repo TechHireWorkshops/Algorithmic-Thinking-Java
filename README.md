@@ -123,7 +123,3 @@ Completes in > 2500ms
 
 Completes in 212 ms
 </details>
-
-## Understanding data manipulation
-Data manipulation is the ability to read, update, and change type of data to identify important information, sort it, and format it as needed.  Understanding the rules and tools of each data type are essential.
-
