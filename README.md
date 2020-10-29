@@ -20,7 +20,7 @@ There's no one way to solve every algorithm
 ### So how do we get good at them?
 #### Practice
 - [HackerRank](https://www.hackerrank.com)
-- [LeetCode](https://https://leetcode.com/)
+- [LeetCode](https://leetcode.com/)
 - [Edabit](https://edabit.com/)
 
 #### Use them
