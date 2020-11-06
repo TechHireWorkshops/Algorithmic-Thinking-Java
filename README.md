@@ -20,7 +20,7 @@ There's no one way to solve every algorithm
 ### So how do we get good at them?
 #### Practice
 - [HackerRank](https://www.hackerrank.com)
-- [LeetCode](https://https://leetcode.com/)
+- [LeetCode](https://leetcode.com/)
 - [Edabit](https://edabit.com/)
 
 #### Use them
@@ -115,7 +115,7 @@ Completes in > 2500ms
 		Arrays.sort(piles);
 		int ans = 0;
 		for (int i = piles.length / 3; i < piles.length; i += 2){
-       	ans += piles[i];
+       		ans += piles[i];
        	}
 		return ans;
     }
