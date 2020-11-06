@@ -22,6 +22,27 @@ Example 3:
 Input: rating = [1,2,3,4]
 Output: 4
 
+sample solution:
+
+  int numTeams(int[] rating) {
+    int res = 0;
+    for (int i = 0; i < rating.length - 1; i++) {
+      int[] less = new int[2];
+      int[] great = new int[2];
+      for (int j = 0; j < rating.length; j++) {
+        if (rating[i] < rating[j]) {
+          less[i > j ? 0 : 1]++;
+        }
+        if (rating[i] > rating[j]) {
+          great[i > j ? 0 : 1]++;
+        }
+      }
+      res += less[0] * great[1] + less[1] * great[0];
+    }
+    return res;
+  } 
+
+
 ===============================================================
 
 Group the people given the group size they belong to
@@ -34,16 +55,26 @@ Return a list of groups such that each person i is in a group of size groupSizes
 
 Each person should appear in exactly one group, and every person must be in a group. If there are multiple answers, return any of them. It is guaranteed that there will be at least one valid solution for the given input.
 
-============================================================
+sample solution:
 
-Bigger is Greater
+  public List<List<Integer>> groupThePeople(int[] groupSizes) {
+        List<List<Integer>> res = new ArrayList<>();
+        HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
 
-Lexicographical order is often known as alphabetical order when dealing with strings. A string is greater than another string if it comes later in a lexicographically sorted list.
+        for (int i = 0; i < groupSizes.length; i++) {
+            int size = groupSizes[i];
+            if (!map.containsKey(size)) {
+                map.put(size, new ArrayList<>());
+            }
 
-Given a word, create a new word by swapping some or all of its characters. This new word must meet two criteria:
+            ArrayList<Integer> group = map.get(size);
+            group.add(i);
 
-It must be greater than the original word
-It must be the smallest word that meets the first condition
-For example, given the word 'abcd', the next largest word is 'abdc'.
+            if (group.size() == size) {
+                res.add(new ArrayList<>(group));
+                group.clear();
+            }
+        }
 
-Complete the function biggerIsGreater below to create and return the new string meeting the criteria. If it is not possible, return no answer.
+        return res;
+    }
